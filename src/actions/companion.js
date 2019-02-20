@@ -1,9 +1,16 @@
 import uuid from 'uuid/v4'
 import types from './types'
 
+const defaultProps = {
+
+};
 
 export function addCompanion(payload) {
-  return { type: types.ADD_COMPANION, id: `companion-${uuid()}`, payload }
+  return {
+    type: types.ADD_COMPANION,
+    id: `companion-${uuid()}`,
+    payload: { ...defaultProps, ...payload  }
+  }
 }
 
 export function updateCompanion(id, payload) {

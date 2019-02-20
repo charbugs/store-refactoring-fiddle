@@ -44,7 +44,7 @@ async function test() {
   /*
   * close window (remove window and corresponding companion windows)
   */
-  store.dispatch(actions.closeWindow(windowId))
+  //store.dispatch(actions.closeWindow(windowId))
 }
 
 
