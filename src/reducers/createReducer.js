@@ -4,7 +4,7 @@ function createReducer(actionConstant) {
   return function(state = {}, action) {
     switch (action.type) {
 
-      case `ADD_${actionConstant}`:
+      case `CREATE_${actionConstant}`:
         return setIn(state, [action.id], action.payload)
 
       case `UPDATE_${actionConstant}`:

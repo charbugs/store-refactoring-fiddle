@@ -5,7 +5,7 @@ import createReducer from './createReducer'
 // import manifestReducer from './manifest'
 
 export default combineReducers({
-  manifest: createReducer('MANIFEST'),
+  manifests: createReducer('MANIFEST'),
   windows: createReducer('WINDOW'),
   companions: createReducer('COMPANION')
 })
