@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
-import windowReducer from './window'
-import companionReducer from './companion'
-import manifestReducer from './manifest'
+import createReducer from './createReducer'
+// import windowReducer from './window'
+// import companionReducer from './companion'
+// import manifestReducer from './manifest'
 
 export default combineReducers({
-  manifest: manifestReducer,
-  windows: windowReducer,
-  companions: companionReducer
+  manifest: createReducer('MANIFEST'),
+  windows: createReducer('WINDOW'),
+  companions: createReducer('COMPANION')
 })
