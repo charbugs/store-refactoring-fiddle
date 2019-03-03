@@ -1,4 +1,4 @@
-import { createTableReducerActions, createSingeltonReducerActions } from '../actions/createAction';
+import { createTableReducerActions, createSingletonReducerActions } from '../reducers/createActions';
 
 describe('table reducer actions', () => {
   const actionTypes = {
@@ -112,27 +112,27 @@ describe('table reducer actions', () => {
   });
 });
 
-describe('singelton reducer actions', () => {
+describe('Singleton reducer actions', () => {
   const actionTypes = {
     update: 'UPDATE_ITEM',
   };
 
-  describe('createSingeltonReducerActions', () => {
+  describe('createSingletonReducerActions', () => {
     it('should return object with correct function names', () => {
-        const actionCreators = createSingeltonReducerActions(actionTypes);
+        const actionCreators = createSingletonReducerActions(actionTypes);
         expect(actionCreators.updateItem).toBeInstanceOf(Function);
     });
   });
 
   describe('update action creator', () => {
     it('should return correct action type', () => {
-      const { updateItem } = createSingeltonReducerActions(actionTypes);
+      const { updateItem } = createSingletonReducerActions(actionTypes);
       const action = updateItem();
       expect(action.type).toBe('UPDATE_ITEM');
     });
 
     it('should set passe data object to payload', () => {
-      const { updateItem } = createSingeltonReducerActions(actionTypes);
+      const { updateItem } = createSingletonReducerActions(actionTypes);
       const action = updateItem({ bubu: 'kiki' });
       expect(action.payload).toEqual({ bubu: 'kiki' });
     });

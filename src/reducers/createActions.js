@@ -31,7 +31,7 @@ export function createTableReducerActions(actionTypes, idPrefix, defaultProps) {
   }
 }
 
-export function createSingeltonReducerActions(actionTypes) {
+export function createSingletonReducerActions(actionTypes) {
 
   function updateItem(payload) {
     return { type: actionTypes.update, payload };

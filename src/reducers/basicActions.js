@@ -1,4 +1,4 @@
-import { createTableReducerActions } from './createAction';
+import { createTableReducerActions, createSingletonReducerActions } from './createActions';
 import actionTypes from './actionTypes';
 
 const windowDefaults = {
@@ -27,3 +27,7 @@ export const {
   createCompanion, updateCompanion,
   deleteCompanion, setCompanionOrder
 } = createTableReducerActions(actionTypes.companion, 'companion');
+
+export const {
+  updateConfig
+} = createSingletonReducerActions(actionTypes.config);

@@ -2,6 +2,20 @@
 export async function test(store, actions) {
   let result
 
+  store.dispatch(actions.updateConfig({
+    theme: 'light',
+    languages: {
+      de: 'Deutsch',
+      en: 'English',
+    }
+  }));
+
+  store.dispatch(actions.updateConfig({
+    languages: {
+      fr: 'Francais',
+    },
+  }));
+
   /*
   * fetch new manifest
   */

@@ -1,4 +1,4 @@
-import { createTableReducer, createSingeltonReducer } from '../reducers/createReducer';
+import { createTableReducer, createSingeltonReducer } from '../reducers/createReducers';
 
 describe('table reducer', () => {
   const actionTypes = {

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import actionTypes from '../actions/actionTypes';
-import { createTableReducer, createSingeltonReducer } from './createReducer'
+import actionTypes from './actionTypes';
+import { createTableReducer, createSingeltonReducer } from './createReducers'
 
 
 export default combineReducers({
