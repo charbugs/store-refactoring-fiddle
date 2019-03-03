@@ -1,4 +1,5 @@
-import { createCreateAction, createUpdateAction, createRemoveAction } from './createAction'
+import { createTableReducerActions } from './createAction';
+import actionTypes from './actionTypes';
 
 const windowDefaults = {
   canvasIndex: 0,
@@ -12,22 +13,17 @@ const windowDefaults = {
   view: 'single',
 }
 
-export const createWindow = createCreateAction('CREATE_WINDOW', 'window', windowDefaults)
-export const updateWindow = createUpdateAction('UPDATE_WINDOW')
-export const removeWindow = createRemoveAction('REMOVE_WINDOW')
+export const {
+  createWindow, updateWindow,
+  deleteWindow, setWindowOrder
+} = createTableReducerActions(actionTypes.window, 'window', windowDefaults);
 
-const manifestDefaults = {
+export const {
+  createManifest, updateManifest,
+  deleteManifest, setManifestOrder
+} = createTableReducerActions(actionTypes.manifest, 'manifest');
 
-};
-
-export const createManifest = createCreateAction('CREATE_MANIFEST', 'manifest', manifestDefaults)
-export const updateManifest = createUpdateAction('UPDATE_MANIFEST')
-export const removeManifest = createRemoveAction('REMOVE_MANIFEST')
-
-const companionDefaults = {
-
-}
-
-export const createCompanion = createCreateAction('CREATE_COMPANION', 'companion', companionDefaults)
-export const updateCompanion = createUpdateAction('UPDATE_COMPANION')
-export const removeCompanion = createRemoveAction('REMOVE_COMPANION')
+export const {
+  createCompanion, updateCompanion,
+  deleteCompanion, setCompanionOrder
+} = createTableReducerActions(actionTypes.companion, 'companion');

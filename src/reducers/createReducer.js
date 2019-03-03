@@ -1,17 +1,25 @@
-import { removeIn, setIn, updateIn, merge } from 'immutable';
+import deepmerge from 'deepmerge';
 
-function createReducer(actionConstant) {
-  return function(state = {}, action) {
+export function createTableReducer(actionTypes) {
+  return function(state = { order: [] }, action) {
     switch (action.type) {
 
-      case `CREATE_${actionConstant}`:
-        return setIn(state, [action.id], action.payload)
+      case actionTypes.create:
+        return { ...state, [action.id]: action.payload }
 
-      case `UPDATE_${actionConstant}`:
-        return updateIn(state, [action.id], orig => merge(orig, action.payload))
+      case actionTypes.update:
+        return { ...state, [action.id]: deepmerge(state[action.id], action.payload) }
 
-      case `REMOVE_${actionConstant}`:
-        return removeIn(state, [action.id])
+      case actionTypes.delete:
+        return Object.keys(state).reduce((object, key) => {
+          if (key !== action.id) {
+            object[key] = state[key]; // eslint-disable-line no-param-reassign
+          }
+          return object;
+        }, {});
+
+      case actionTypes.order:
+        return { ...state, order: action.payload }
 
       default:
         return state
@@ -19,4 +27,13 @@ function createReducer(actionConstant) {
   }
 }
 
-export default createReducer;
+export function createSingeltonReducer(actionTypes) {
+  return function(state = {}, action) {
+    switch (action.type) {
+      case actionTypes.update:
+        return deepmerge(state, action.payload);
+      default:
+        return state;
+    }
+  }
+}

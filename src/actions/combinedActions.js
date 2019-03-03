@@ -1,21 +1,18 @@
 import fetch from 'node-fetch';
 import {
   createManifest, updateManifest, updateWindow,
-  createCompanion, removeCompanion, removeWindow,
+  createCompanion, deleteCompanion, deleteWindow,
   createWindow,
 } from '.'
 import * as events from '../events'
 
 
-export function fetchManifest(manifestUrl) {
-  return function (dispatch) {
-
-    const { id } = dispatch(createManifest({ manifestUrl, isFetching: true }));
-    return fetch(manifestUrl)
-      .then(response => response.json())
-      .then(json => dispatch(updateManifest(id, { manifestation: json, isFetching: false })))
-      .catch(error => dispatch(updateManifest(id, { error, isFetching: false })))
-  }
+export const fetchManifest = manifestUrl => dispatch => {
+  const { id } = dispatch(createManifest({ manifestUrl, isFetching: true }));
+  return fetch(manifestUrl)
+    .then(response => response.json())
+    .then(json => dispatch(updateManifest(id, { manifestation: json, isFetching: false })))
+    .catch(error => dispatch(updateManifest(id, { error, isFetching: false })))
 }
 
 export function openNewWindow(manifestId) {
@@ -52,7 +49,7 @@ export function closeWindow (windowId) {
   return function (dispatch, getState) {
 
     const { companionIds } = getState().windows[windowId];
-    companionIds.forEach(id => dispatch(removeCompanion(id)))
-    dispatch(removeWindow(windowId))
+    companionIds.forEach(id => dispatch(deleteCompanion(id)))
+    dispatch(deleteWindow(windowId))
   }
 }

@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import createReducer from './createReducer'
-// import windowReducer from './window'
-// import companionReducer from './companion'
-// import manifestReducer from './manifest'
+import actionTypes from '../actions/actionTypes';
+import { createTableReducer, createSingeltonReducer } from './createReducer'
+
 
 export default combineReducers({
-  manifests: createReducer('MANIFEST'),
-  windows: createReducer('WINDOW'),
-  companions: createReducer('COMPANION')
+  manifests: createTableReducer(actionTypes.manifest),
+  windows: createTableReducer(actionTypes.window),
+  companions: createTableReducer(actionTypes.companion),
+  config: createSingeltonReducer(actionTypes.config),
 })
